@@ -12,7 +12,7 @@ import anthropic
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 
 # ── CONFIG ────────────────────────────────────────────────────────────────────
-BOT_TOKEN = os.getenv("BOT_TOKEN", "8778445534:AAHB-c2vhHkE2tzp9NKgR7TEa9ZYI4quhVM")
+BOT_TOKEN = os.getenv("BOT_TOKEN", "")
 ANTHROPIC_KEY = os.getenv("ANTHROPIC_API_KEY", "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")
 REMINDER_HOUR = 7   # Во сколько часов присылать напоминание (по UTC+7 Da Nang = UTC+7)
 DATA_FILE = "fitbot_data.json"
