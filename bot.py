@@ -179,7 +179,7 @@ async def cmd_start(message: Message):
         f"Планка: {plank_fmt(w['plank'])}\n"
         f"Отжимания: {w['pushups']} раз\n\n"
         f"Каждый день: +1 приседание, +1 пресс, +1 отжимание, +5с планка\n"
-        f"Напоминание каждое утро в 8:00!\n\n"
+        f"Напоминание каждое утро в 7:00!\n\n"
         f"Вперёд к лету! 🌞",
         reply_markup=main_keyboard(),
     )
