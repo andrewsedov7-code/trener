@@ -1,25 +1,24 @@
 import asyncio
+import os
 import threading
-from http.server import HTTPServer, BaseHTTPRequestHandler
+from aiohttp import web
 import bot as fitbot
 
-# Простой HTTP сервер чтобы Render не останавливал процесс
-class PingHandler(BaseHTTPRequestHandler):
-    def do_GET(self):
-        self.send_response(200)
-        self.end_headers()
-        self.wfile.write(b"FitBot is running!")
-    def log_message(self, *args):
-        pass  # не спамим в логи
+async def handle(request):
+    return web.Response(text="OK")
 
-def run_web():
-    port = int(__import__("os").environ.get("PORT", 8080))
-    server = HTTPServer(("0.0.0.0", port), PingHandler)
-    server.serve_forever()
+async def run_web():
+    app = web.Application()
+    app.router.add_get("/", handle)
+    runner = web.AppRunner(app)
+    await runner.setup()
+    port = int(os.environ.get("PORT", 8080))
+    site = web.TCPSite(runner, "0.0.0.0", port)
+    await site.start()
+
+async def main():
+    await run_web()
+    await fitbot.main()
 
 if __name__ == "__main__":
-    # Запускаем веб-сервер в отдельном потоке
-    t = threading.Thread(target=run_web, daemon=True)
-    t.start()
-    # Запускаем бота
-    asyncio.run(fitbot.main())
+    asyncio.run(main())
