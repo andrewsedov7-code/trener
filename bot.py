@@ -86,7 +86,7 @@ def get_workout(day: int):
     return {
         "squats":  30 + d,
         "abs":     30 + d,
-        "pushups": 30 + d,
+        "pushups": 10 + d,
         "plank":   30 + d * 5,
     }
 
